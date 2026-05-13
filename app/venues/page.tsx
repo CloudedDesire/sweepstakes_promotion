@@ -16,6 +16,8 @@ const photos = [
   "/images/club-2.jpg",
   "/images/club-3.jpg",
   "/images/club-4.jpg",
+  "/images/club-5.jpg",
+  "/images/club-6.jpg",
 ];
 
 export default function VenuePage() {
@@ -26,23 +28,20 @@ export default function VenuePage() {
     phone: "(602) 555-0199",
   };
 
-  // Native maps deep-link
   const openMaps = () => {
     const encoded = encodeURIComponent(venue.address);
 
-    // iOS Apple Maps
     if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
       window.location.href = `maps://?q=${encoded}`;
       return;
     }
 
-    // Android + Desktop → Google Maps
     window.location.href = `https://www.google.com/maps/search/?api=1&query=${encoded}`;
   };
 
   return (
     <div className="min-h-screen w-full flex justify-center bg-[#050010] overflow-hidden">
-      {/* Centered wrapper with max width */}
+      {/* Center wrapper */}
       <div className="relative w-full max-w-[400px] min-h-screen bg-[#050010] text-white flex flex-col overflow-y-auto no-scrollbar">
 
         {/* Background glows */}
@@ -51,7 +50,8 @@ export default function VenuePage() {
         <div className="absolute top-10 -right-10 h-40 w-40 rounded-full bg-cyan-500/20 blur-3xl" />
 
         {/* Content */}
-        <div className="flex-1 pb-24 px-5 pt-10">
+        <div className="flex-1 pb-24 px-5 pt-10 overflow-x-hidden">
+
           {/* Header */}
           <div className="text-center mb-6">
             <h1 className="text-2xl font-semibold tracking-wide">
@@ -129,14 +129,15 @@ export default function VenuePage() {
             <h2 className="text-sm font-semibold tracking-wide text-gray-100">
               Photo Gallery
             </h2>
-            <span className="text-[11px] text-gray-400">Swipe to view</span>
+            <span className="text-[11px] text-gray-400">Scroll to view</span>
           </div>
 
-          <div className="flex gap-3 overflow-x-auto pb-2 no-scrollbar">
+          {/* 2-column vertical grid */}
+          <div className="grid grid-cols-2 gap-3 pb-2">
             {photos.map((src, idx) => (
               <div
                 key={idx}
-                className="relative h-32 w-40 flex-shrink-0 rounded-2xl overflow-hidden border border-white/10 
+                className="relative h-40 w-full rounded-2xl overflow-hidden border border-white/10 
                            shadow-[0_0_18px_rgba(15,23,42,0.9)]"
               >
                 <img
