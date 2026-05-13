@@ -10,13 +10,6 @@ export default function DiscoverPage() {
       {/* MAIN WRAPPER */}
       <div className="w-full max-w-[400px] flex flex-col pb-24">
 
-        {/* HEADER */}
-        <div className="px-5 pt-6 pb-3">
-          <h1 className="text-xl font-semibold text-white">
-            Discover Nightlife Spots Nearby
-          </h1>
-        </div>
-
         {/* MAP PLACEHOLDER */}
         <div className="px-5">
           <div className="w-full h-40 rounded-xl bg-gradient-to-br from-[#1a1a25] to-[#0f0f17] border border-[#2a2a3a] flex items-center justify-center text-sm text-gray-400">
@@ -26,22 +19,6 @@ export default function DiscoverPage() {
           <p className="text-xs text-gray-400 mt-2">
             Nearby Hotspots • Within 5 Miles
           </p>
-        </div>
-
-        {/* CATEGORY FILTERS */}
-        <div className="px-5 mt-5 flex gap-2 overflow-x-auto no-scrollbar">
-          {["All", "Nightclubs", "Bars", "Lounges"].map((cat) => (
-            <button
-              key={cat}
-              className="px-4 py-1.5 rounded-full bg-[#1a1a25] border border-[#2a2a3a] text-sm text-gray-300 hover:text-white hover:border-purple-500 transition"
-            >
-              {cat}
-            </button>
-          ))}
-
-          <button className="ml-auto px-4 py-1.5 rounded-full bg-[#1a1a25] border border-[#2a2a3a] text-sm text-gray-300 hover:text-white hover:border-purple-500 transition">
-            Sort: Popular
-          </button>
         </div>
 
         {/* VENUE LIST */}
@@ -88,7 +65,7 @@ export default function DiscoverPage() {
               WIN VIP PRIZES!
             </h3>
             <p className="text-sm text-gray-300 mt-1">
-              Check In & Earn Entries for Big Rewards
+              Check In & Sweepstakes Entries for Cash Prizes
             </p>
           </div>
         </div>
@@ -151,7 +128,7 @@ function FooterNav() {
 
         <Link href="/checkin" className="flex flex-col items-center">
           <Navigation size={22} />
-          <span className="text-xs mt-1">Check-In</span>
+          <span className="text-xs mt-1">Favorites</span>
         </Link>
 
         <Link href="/profile" className="flex flex-col items-center">
