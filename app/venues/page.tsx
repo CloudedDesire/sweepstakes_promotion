@@ -52,18 +52,6 @@ export default function VenuePage() {
           {venue.phone}
         </a>
 
-        {/* 6‑Image Grid */}
-        <div className="grid grid-cols-3 gap-2 mb-6">
-          {venue.photos.map((_, i) => (
-            <div
-              key={i}
-              className="w-full h-24 bg-[#111] border border-[#222] rounded-xl flex items-center justify-center text-gray-500 text-xs"
-            >
-              Photo
-            </div>
-          ))}
-        </div>
-
         {/* Buttons Row */}
         <div className="flex gap-3 mb-6">
           <button
@@ -92,6 +80,17 @@ export default function VenuePage() {
           <a href="#" className="hover:text-purple-400 underline">
             URL
           </a>
+        </div>
+        {/* 6‑Image Grid */}
+        <div className="grid grid-cols-2 gap-2 mb-6">
+          {venue.photos.map((_, i) => (
+            <div
+              key={i}
+              className="w-full h-24 bg-[#111] border border-[#222] rounded-xl flex items-center justify-center text-gray-500 text-xs"
+            >
+              Photo
+            </div>
+          ))}
         </div>
       </div>
 
