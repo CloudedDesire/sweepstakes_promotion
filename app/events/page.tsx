@@ -1,7 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Calendar, MapPin, Star } from "lucide-react";
+import FooterNav from "@/components/FooterNav";
+import { Calendar, MapPin } from "lucide-react";
 
 export default function EventsPage() {
   const router = useRouter();
@@ -32,7 +33,7 @@ export default function EventsPage() {
           </button>
         </div>
 
-        {/* EVENT CARD COMPONENT */}
+        {/* EVENT CARDS */}
         <EventCard
           venue="Club Eclipse"
           address="123 Main St, Phoenix, AZ"
@@ -65,16 +66,8 @@ export default function EventsPage() {
         />
       </div>
 
-      {/* FOOTER NAVIGATION */}
-      <div className="fixed bottom-0 w-full max-w-[400px] bg-black border-t border-[#222] flex justify-between px-6 py-3 text-gray-400">
-        <button onClick={() => router.push("/")}>Home</button>
-        <button onClick={() => router.push("/discover")}>Discover</button>
-        <button onClick={() => router.push("/rewards")}>Rewards</button>
-        <button onClick={() => router.push("/checkin")}>Check-In</button>
-        <button className="text-pink-400" onClick={() => router.push("/events")}>
-          Events
-        </button>
-      </div>
+      {/* Unified Footer */}
+      <FooterNav />
     </div>
   );
 }
