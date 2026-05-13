@@ -1,7 +1,7 @@
 "use client";
 
 import FooterNav from "@/app/components/FooterNav";
-import { MapPin, Phone, Globe, Instagram, Facebook } from "lucide-react";
+import { MapPin, Phone, Globe } from "lucide-react";
 
 export default function VenuePage() {
   const venue = {
