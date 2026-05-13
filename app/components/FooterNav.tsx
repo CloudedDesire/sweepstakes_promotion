@@ -15,7 +15,7 @@ export default function FooterNav() {
 
         {/* HOME */}
         <Link
-          href="/"
+          href="/venues"
           className={`flex flex-col items-center ${
             isActive("/") ? "text-purple-400" : ""
           }`}
