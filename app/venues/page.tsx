@@ -3,9 +3,6 @@
 import FooterNav from "@/app/components/FooterNav";
 import { MapPin, Phone } from "lucide-react";
 
-// Font Awesome (social icons)
-import { FaFacebook, FaInstagram, FaXTwitter, FaGlobe } from "react-icons/fa6";
-
 export default function VenuePage() {
   const venue = {
     name: "Club Eclipse",
@@ -81,19 +78,19 @@ export default function VenuePage() {
           </button>
         </div>
 
-        {/* Social Icons */}
-        <div className="flex justify-center gap-8 mb-10 text-gray-300">
-          <a href="#" className="hover:text-purple-400">
-            <FaFacebook size={26} />
+        {/* Social Links (Text Placeholders) */}
+        <div className="flex flex-wrap justify-center gap-4 mb-10 text-sm text-gray-300">
+          <a href="#" className="hover:text-purple-400 underline">
+            FB
           </a>
-          <a href="#" className="hover:text-purple-400">
-            <FaInstagram size={26} />
+          <a href="#" className="hover:text-purple-400 underline">
+            IG
           </a>
-          <a href="#" className="hover:text-purple-400">
-            <FaXTwitter size={26} />
+          <a href="#" className="hover:text-purple-400 underline">
+            X
           </a>
-          <a href="#" className="hover:text-purple-400">
-            <FaGlobe size={26} />
+          <a href="#" className="hover:text-purple-400 underline">
+            URL
           </a>
         </div>
       </div>
