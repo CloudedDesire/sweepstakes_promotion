@@ -145,5 +145,66 @@ export default function QRPage() {
                 <strong>Scans:</strong> {qr.scansUsed}/{qr.maxScans}
 
                 <div className="flex gap-2 mt-2">
+                  {/* EDIT BUTTON */}
                   <button
-                    onClick={() => {}}
+                    onClick={() => startEdit(qr)}
+                    className="px-3 py-1 bg-blue-500 text-white rounded"
+                  >
+                    Edit
+                  </button>
+
+                  {/* DELETE BUTTON */}
+                  <button
+                    onClick={() => deleteQR(qr._id)}
+                    className="px-3 py-1 bg-red-500 text-white rounded"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      {/* ⭐ EDIT MODAL */}
+      {editing && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
+          <div className="bg-white p-6 rounded shadow w-96">
+            <h2 className="text-xl font-bold mb-4">Edit QR Code</h2>
+
+            {/* Editable fields */}
+            {Object.keys(editing)
+              .filter(k => !["_id"].includes(k))
+              .map(key => (
+                <input
+                  key={key}
+                  className="border p-2 w-full mb-2"
+                  value={(editing as any)[key]}
+                  onChange={e =>
+                    setEditing({ ...editing, [key]: e.target.value })
+                  }
+                />
+              ))}
+
+            <div className="flex gap-2 mt-4">
+              <button
+                onClick={saveEdit}
+                className="bg-blue-600 text-white px-4 py-2 rounded"
+              >
+                Save
+              </button>
+
+              <button
+                onClick={() => setEditing(null)}
+                className="bg-gray-400 text-white px-4 py-2 rounded"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
