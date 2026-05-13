@@ -1,7 +1,7 @@
 "use client";
 
 import FooterNav from "@/app/components/FooterNav";
-import { MapPin, Phone, Globe } from "lucide-react";
+import { MapPin, Phone } from "lucide-react";
 
 export default function VenuePage() {
   const venue = {
@@ -65,24 +65,15 @@ export default function VenuePage() {
           RSVP for Entries
         </button>
 
-        {/* Contact + Socials */}
+        {/* Contact */}
         <div className="flex flex-col items-center mb-10">
           <a
             href={`tel:${venue.phone}`}
-            className="flex items-center text-purple-300 text-sm mb-3"
+            className="flex items-center text-purple-300 text-sm"
           >
             <Phone size={16} className="mr-2" />
             {venue.phone}
           </a>
-
-          <div className="flex items-center gap-6 mt-2">
-            <a href="#" className="text-gray-300 hover:text-purple-400">
-              <Instagram size={26} />
-            </a>
-            <a href="#" className="text-gray-300 hover:text-purple-400">
-              <Facebook size={26} />
-            </a>
-          </div>
         </div>
       </div>
 
