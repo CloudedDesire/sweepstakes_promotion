@@ -11,6 +11,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <a href="/admin/entries" className="block">Entries</a>
           <a href="/admin/checkins" className="block">Check‑ins</a>
           <a href="/admin/users" className="block">Users</a>
+
+          <a href="/api/admin/logout" className="block mt-6 text-red-400">Logout</a>
+
         </nav>
       </aside>
 
