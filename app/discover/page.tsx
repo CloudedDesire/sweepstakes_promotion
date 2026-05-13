@@ -65,7 +65,7 @@ export default function DiscoverPage() {
               WIN VIP PRIZES!
             </h3>
             <p className="text-sm text-gray-300 mt-1">
-              Check In & Sweepstakes Entries for Cash Prizes
+              Check In & Receive Entries for Cash Prizes
             </p>
           </div>
         </div>
