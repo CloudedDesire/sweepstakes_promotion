@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import FooterNav from "@/components/FooterNav";
+import FooterNav from "@/app/components/FooterNav";
 import { Calendar, MapPin } from "lucide-react";
 
 export default function EventsPage() {
