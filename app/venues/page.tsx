@@ -42,7 +42,7 @@ export default function VenuePage() {
   return (
     <div className="min-h-screen w-full flex justify-center bg-[#050010] overflow-hidden">
       {/* Center wrapper */}
-      <div className="relative w-full max-w-[400px] min-h-screen bg-[#050010] text-white flex flex-col overflow-y-auto no-scrollbar">
+      <div className="relative w-full max-w-[400px] bg-[#050010] text-white flex flex-col overflow-y-auto no-scrollbar overflow-x-hidden">
 
         {/* Background glows */}
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#1b0040] via-[#050010] to-black" />
@@ -83,10 +83,13 @@ export default function VenuePage() {
               <Clock className="h-4 w-4 text-cyan-400 mt-0.5" />
               <span>{venue.hours}</span>
             </div>
-            <div className="flex items-start gap-2">
+            <a
+              href={`tel:${venue.phone.replace(/\D/g, "")}`}
+              className="flex items-start gap-2 hover:text-pink-300 transition"
+            >
               <Phone className="h-4 w-4 text-purple-300 mt-0.5" />
               <span>{venue.phone}</span>
-            </div>
+            </a>
           </div>
 
           {/* Buttons */}
@@ -94,7 +97,7 @@ export default function VenuePage() {
             <button
               onClick={openMaps}
               className="flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 
-                         text-sm font-semibold py-3 shadow-[0_0_18px_rgba(56,189,248,0.8)] hover:shadow-[0_0_26px_rgba(56,189,248,1)] 
+                         text-sm font-semibold py-2.5 shadow-[0_0_18px_rgba(56,189,248,0.8)] hover:shadow-[0_0_26px_rgba(56,189,248,1)] 
                          transition-shadow"
             >
               <Navigation className="h-4 w-4" />
@@ -103,23 +106,23 @@ export default function VenuePage() {
 
             <button
               className="flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500 
-                         text-sm font-semibold py-3 shadow-[0_0_22px_rgba(236,72,153,0.9)] hover:shadow-[0_0_30px_rgba(236,72,153,1)] 
+                         text-sm font-semibold py-2.5 shadow-[0_0_22px_rgba(236,72,153,0.9)] hover:shadow-[0_0_30px_rgba(236,72,153,1)] 
                          transition-shadow"
             >
               <CalendarDays className="h-4 w-4" />
-              <span>RSVP to Earn Bonus Entries</span>
+              <span>RSVP for Entries</span>
             </button>
           </div>
 
           {/* Social row */}
-          <div className="flex justify-center gap-4 mb-6 text-xs text-gray-300">
-            <div className="h-8 w-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shadow-[0_0_12px_rgba(148,163,184,0.6)]">
+          <div className="flex justify-center gap-8 mb-6 text-xs text-gray-300">
+            <div className="h-12 w-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shadow-[0_0_12px_rgba(148,163,184,0.6)] text-lg">
               f
             </div>
-            <div className="h-8 w-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shadow-[0_0_12px_rgba(148,163,184,0.6)]">
+            <div className="h-12 w-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shadow-[0_0_12px_rgba(148,163,184,0.6)] text-lg">
               IG
             </div>
-            <div className="h-8 w-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shadow-[0_0_12px_rgba(148,163,184,0.6)]">
+            <div className="h-12 w-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shadow-[0_0_12px_rgba(148,163,184,0.6)] text-lg">
               🌐
             </div>
           </div>
