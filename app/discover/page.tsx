@@ -1,8 +1,7 @@
 "use client";
 
-import Map from "@/components/Map"; // keep your existing map component
 import FooterNav from "@/app/components/FooterNav";
-import { MapPin, Star, Navigation } from "lucide-react";
+import { MapPin, Star } from "lucide-react";
 
 export default function DiscoverPage() {
   return (
@@ -31,8 +30,11 @@ export default function DiscoverPage() {
           </button>
         </div>
 
-        {/* Map */}
-        <Map lat={33.4484} lng={-112.0740} />
+        {/* MAP PLACEHOLDER */}
+        <div className="w-full h-40 rounded-xl bg-[#111] border border-[#222] flex items-center justify-center text-gray-500 text-sm">
+          Map Placeholder
+        </div>
+
         <p className="text-xs text-gray-400 mt-2 mb-6">
           Nearby Hotspots • Within 5 Miles
         </p>
