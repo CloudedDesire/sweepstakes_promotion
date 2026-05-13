@@ -1,7 +1,7 @@
 "use client";
 
 import FooterNav from "@/app/components/FooterNav";
-import { MapPin, Phone, Globe, Instagram, Facebook, TwitterIcon } from "lucide-react";
+import { MapPin, Phone, Globe, Instagram, Facebook } from "lucide-react";
 
 export default function VenuePage() {
   const venue = {
@@ -81,9 +81,6 @@ export default function VenuePage() {
             </a>
             <a href="#" className="text-gray-300 hover:text-purple-400">
               <Facebook size={26} />
-            </a>
-            <a href="#" className="text-gray-300 hover:text-purple-400">
-              <TwitterIcon size={26} />
             </a>
           </div>
         </div>
