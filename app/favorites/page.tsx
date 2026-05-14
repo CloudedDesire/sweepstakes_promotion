@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Header from "@/app/components/Header";
 import FooterNav from "@/app/components/FooterNav";
 
 export default function FavoritesPage() {
@@ -76,13 +77,22 @@ export default function FavoritesPage() {
 
   const openMaps = (address: string) => {
     const encoded = encodeURIComponent(address);
-    window.open(`https://www.google.com/maps/dir/?api=1&destination=${encoded}`, "_blank");
+    window.open(
+      `https://www.google.com/maps/dir/?api=1&destination=${encoded}`,
+      "_blank"
+    );
   };
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center bg-gradient-to-b from-black via-[#0a0a0a] to-black text-white pb-24">
-      <div className="w-full max-w-[400px] px-4 pt-6">
-        <h1 className="text-3xl font-bold text-center mb-6">Favorites</h1>
+
+      {/* Global Header */}
+      <Header
+        title="Favorites"
+        tagline="Your saved nightlife hotspots."
+      />
+
+      <div className="w-full max-w-[400px] px-4 pt-2">
 
         {venues.map((venue) => (
           <div
@@ -99,7 +109,7 @@ export default function FavoritesPage() {
 
               <button
                 onClick={() => toggleFavorite(venue.id)}
-                className="text-2xl select-none"
+                className="text-3xl select-none"
               >
                 {venue.favorited ? "❤️‍🔥" : "🤍"}
               </button>
