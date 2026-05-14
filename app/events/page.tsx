@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import Header from "@/app/components/Header";
 import FooterNav from "@/app/components/FooterNav";
 import { Calendar, MapPin } from "lucide-react";
 
@@ -9,19 +10,18 @@ export default function EventsPage() {
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center bg-[#050505] text-white">
+
+      {/* Global Header */}
+      <Header
+        title="Events"
+        tagline="Join parties and earn bonus sweepstakes entries."
+      />
+
       {/* Main Wrapper */}
       <div className="w-full max-w-[400px] flex flex-col px-4 pb-24">
 
-        {/* Header */}
-        <h1 className="text-3xl font-bold mt-6 mb-2 text-center bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent drop-shadow-[0_0_6px_rgba(255,0,255,0.6)]">
-          Events
-        </h1>
-        <p className="text-center text-sm text-gray-300 mb-6">
-          Join parties and earn bonus sweepstakes entries.
-        </p>
-
         {/* Search + Filters Row */}
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-4 mt-2">
           <div className="flex-1 bg-[#111] border border-[#222] rounded-xl px-3 py-2 text-sm text-gray-300">
             Search by Venue, Date or Multiplier
           </div>
