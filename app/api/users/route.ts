@@ -1,28 +1,40 @@
 import { NextResponse } from "next/server";
-import clientPromise from "@/lib/mongodb";
+import { connectDB } from "@/lib/mongodb";
+import User from "@/models/User";
 
 export async function GET() {
-  const client = await clientPromise;
-  const users = await client.db("nightlife").collection("users").find().toArray();
-  return NextResponse.json(users);
+  try {
+    await connectDB();
+
+    const users = await User.find({});
+    return NextResponse.json(users);
+  } catch (err) {
+    console.error("GET /users error:", err);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
+  }
 }
 
 export async function POST(req: Request) {
-  const body = await req.json();
-  const client = await clientPromise;
+  try {
+    await connectDB();
 
-  const newUser = {
-    name: body.name,
-    email: body.email,
-    phone: body.phone,
-    createdAt: new Date(),
-    lastLogin: new Date(),
-    totalEntries: 0,
-    statusTier: "Silver",
-    referralCode: body.referralCode || null,
-    referredBy: body.referredBy || null
-  };
+    const body = await req.json();
 
-  const result = await client.db("nightlife").collection("users").insertOne(newUser);
-  return NextResponse.json({ insertedId: result.insertedId });
+    const newUser = await User.create({
+      name: body.name,
+      email: body.email,
+      phone: body.phone,
+      createdAt: new Date(),
+      lastLogin: new Date(),
+      totalEntries: 0,
+      statusTier: "Silver",
+      referralCode: body.referralCode || null,
+      referredBy: body.referredBy || null,
+    });
+
+    return NextResponse.json({ insertedId: newUser._id });
+  } catch (err) {
+    console.error("POST /users error:", err);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
+  }
 }

@@ -1,52 +1,76 @@
 import { NextResponse } from "next/server";
-import clientPromise from "@/lib/mongodb";
-import { ObjectId } from "mongodb";
+import { connectDB } from "@/lib/mongodb";
+import Venue from "@/models/Venue";
+import mongoose from "mongoose";
 
 export async function GET() {
-  const client = await clientPromise;
-  const venues = await client.db("nightlife").collection("venues").find().toArray();
-  return NextResponse.json(venues);
+  try {
+    await connectDB();
+
+    const venues = await Venue.find({});
+    return NextResponse.json(venues);
+  } catch (err) {
+    console.error("GET /venues error:", err);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
+  }
 }
 
 export async function POST(req: Request) {
-  const body = await req.json();
-  const client = await clientPromise;
+  try {
+    await connectDB();
 
-  const venue = {
-    venueName: body.venueName,
-    address: body.address,
-    city: body.city,
-    state: body.state,
-    zip: body.zip,
-    latitude: body.latitude,
-    longitude: body.longitude,
-    createdAt: new Date(),
-    active: true
-  };
+    const body = await req.json();
 
-  const result = await client.db("nightlife").collection("venues").insertOne(venue);
-  return NextResponse.json({ insertedId: result.insertedId });
+    const venue = await Venue.create({
+      venueName: body.venueName,
+      address: body.address,
+      city: body.city,
+      state: body.state,
+      zip: body.zip,
+      latitude: body.latitude,
+      longitude: body.longitude,
+      createdAt: new Date(),
+      active: true,
+    });
+
+    return NextResponse.json({ insertedId: venue._id });
+  } catch (err) {
+    console.error("POST /venues error:", err);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
+  }
 }
 
 export async function PATCH(req: Request) {
-  const body = await req.json();
-  const client = await clientPromise;
+  try {
+    await connectDB();
 
-  await client.db("nightlife").collection("venues").updateOne(
-    { _id: new ObjectId(body._id) },
-    { $set: body }
-  );
+    const body = await req.json();
 
-  return NextResponse.json({ success: true });
+    await Venue.updateOne(
+      { _id: new mongoose.Types.ObjectId(body._id) },
+      { $set: body }
+    );
+
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    console.error("PATCH /venues error:", err);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
+  }
 }
 
 export async function DELETE(req: Request) {
-  const { id } = await req.json();
-  const client = await clientPromise;
+  try {
+    await connectDB();
 
-  await client.db("nightlife").collection("venues").deleteOne({
-    _id: new ObjectId(id)
-  });
+    const { id } = await req.json();
 
-  return NextResponse.json({ success: true });
+    await Venue.deleteOne({
+      _id: new mongoose.Types.ObjectId(id),
+    });
+
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    console.error("DELETE /venues error:", err);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
+  }
 }
