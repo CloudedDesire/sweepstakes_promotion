@@ -1,24 +1,24 @@
 "use client";
 
+import Header from "@/app/components/Header";
 import FooterNav from "@/app/components/FooterNav";
 import { MapPin, Star } from "lucide-react";
 
 export default function DiscoverPage() {
   return (
     <div className="min-h-screen w-full flex flex-col items-center bg-[#050505] text-white">
+
+      {/* Global Header */}
+      <Header
+        title="Discover"
+        tagline="Find nightlife hotspots near you."
+      />
+
       {/* Main Wrapper */}
       <div className="w-full max-w-[400px] px-4 pb-24">
 
-        {/* Header */}
-        <h1 className="text-3xl font-bold mt-6 mb-2 text-center bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent drop-shadow-[0_0_6px_rgba(255,0,255,0.6)]">
-          Discover
-        </h1>
-        <p className="text-center text-sm text-gray-300 mb-6">
-          Find nightlife hotspots near you.
-        </p>
-
         {/* Category Filters */}
-        <div className="flex justify-between mb-4">
+        <div className="flex justify-between mb-4 mt-2">
           <button className="px-4 py-2 bg-[#111] border border-[#222] rounded-xl text-sm">
             Trending
           </button>
