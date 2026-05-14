@@ -1,28 +1,28 @@
 "use client";
 
+import Header from "@/app/components/Header";
 import FooterNav from "@/app/components/FooterNav";
 
 export default function ProfilePage() {
   return (
     <div className="min-h-screen w-full bg-gradient-to-b from-black via-[#0a0014] to-black text-white flex flex-col items-center">
+
+      {/* Global Header */}
+      <Header
+        title="Your Profile"
+        tagline="Nightlife Enthusiast • VIP Explorer"
+      />
+
       {/* Main Wrapper */}
       <div className="w-full max-w-[400px] mx-auto px-4 pb-24">
 
-        {/* Header / Username */}
-        <div className="text-center pt-8">
-          <h1 className="text-2xl font-bold">Username</h1>
-          <p className="text-sm text-purple-300 mt-1">
-            Nightlife Enthusiast • VIP Explorer
-          </p>
-        </div>
-
         {/* Profile Photo */}
-        <div className="flex justify-center mt-6">
+        <div className="flex justify-center mt-4">
           <div className="w-32 h-32 rounded-full bg-purple-700/40 border border-purple-500 shadow-[0_0_15px_#a855f7]"></div>
         </div>
 
         {/* Social Link Buttons (Text Only) */}
-        <div className="mt-6 space-y-3">
+        <div className="mt-8 space-y-3">
           <button className="w-full py-3 rounded-lg bg-purple-900/40 border border-purple-500 text-purple-200">
             LinkedIn (placeholder)
           </button>
