@@ -5,13 +5,16 @@ import jwt from "jsonwebtoken";
 export function middleware(req: NextRequest) {
   const token = req.cookies.get("auth")?.value;
 
-  if (!token) return NextResponse.redirect("/login");
+  // If no token → redirect to login
+  if (!token) {
+    return NextResponse.redirect(new URL("/login", req.url));
+  }
 
   try {
     jwt.verify(token, process.env.JWT_SECRET!);
     return NextResponse.next();
   } catch {
-    return NextResponse.redirect("/login");
+    return NextResponse.redirect(new URL("/login", req.url));
   }
 }
 
