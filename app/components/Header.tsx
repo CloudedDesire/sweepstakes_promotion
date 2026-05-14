@@ -36,6 +36,7 @@ export default function Header({ title, tagline }: { title: string; tagline: str
             <a href="#" className="py-3 px-3 hover:bg-[#222] rounded-lg">Edit Pictures</a>
             <a href="#" className="py-3 px-3 hover:bg-[#222] rounded-lg">Upload Pictures</a>
             <a href="#" className="py-3 px-3 hover:bg-[#222] rounded-lg">My Entries</a>
+            <a href="#" className="py-3 px-3 hover:bg-[#222] rounded-lg">My Messages</a>
 
             <div className="border-t border-[#333] my-3" />
 
