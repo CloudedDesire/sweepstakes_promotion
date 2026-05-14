@@ -1,21 +1,13 @@
 import { NextResponse } from "next/server";
-import clientPromise from "@/lib/mongodb";
+import { connectDB } from "@/lib/mongodb";
 
 export async function GET() {
-
-  console.log("MONGODB_URI:", process.env.MONGODB_URI);
-  
   try {
-    const client = await clientPromise;
-    const db = client.db("nightlife");
-    const result = await db.collection("test").insertOne({
-      ok: true,
-      time: new Date(),
-    });
+    await connectDB();
 
-    return NextResponse.json({ insertedId: result.insertedId });
-  } catch (error) {
-    console.error("DBTEST ERROR:", error);
-    return NextResponse.json({ error: String(error) }, { status: 500 });
+    return NextResponse.json({ message: "DB connection successful" });
+  } catch (err) {
+    console.error(err);
+    return NextResponse.json({ error: "Database error" }, { status: 500 });
   }
 }
