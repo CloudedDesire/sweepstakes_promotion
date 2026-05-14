@@ -1,5 +1,6 @@
 "use client";
 
+import Header from "@/app/components/Header";
 import FooterNav from "@/app/components/FooterNav";
 import { MapPin, Phone } from "lucide-react";
 
@@ -9,7 +10,7 @@ export default function VenuePage() {
     address: "123 Main Street, Phoenix, AZ",
     hours: "Mon–Sun • 6 PM – 2 AM",
     phone: "(602) 555-0199",
-    photos: [1, 2, 3, 4, 5, 6], // placeholders
+    photos: [1, 2, 3, 4, 5, 6],
   };
 
   const openMaps = () => {
@@ -19,15 +20,17 @@ export default function VenuePage() {
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center bg-[#050505] text-white">
+
+      {/* Global Header */}
+      <Header
+        title={venue.name}
+        tagline="Nightlife Venue • Phoenix AZ"
+      />
+
       <div className="w-full max-w-[400px] px-4 pb-24">
 
-        {/* Venue Name */}
-        <h1 className="text-3xl font-bold mt-6 mb-3 text-center bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent drop-shadow-[0_0_6px_rgba(255,0,255,0.6)]">
-          {venue.name}
-        </h1>
-
         {/* CHECK IN Graphic */}
-        <div className="w-full flex justify-center mb-4">
+        <div className="w-full flex justify-center mb-4 mt-2">
           <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-full shadow-[0_0_12px_rgba(255,0,255,0.5)] font-bold text-lg tracking-wide flex items-center gap-2">
             <MapPin size={20} />
             CHECK IN
@@ -68,19 +71,12 @@ export default function VenuePage() {
 
         {/* Social Links (Text Placeholders) */}
         <div className="flex flex-wrap justify-center gap-4 mb-10 text-sm text-gray-300">
-          <a href="#" className="hover:text-purple-400 underline">
-            FB
-          </a>
-          <a href="#" className="hover:text-purple-400 underline">
-            IG
-          </a>
-          <a href="#" className="hover:text-purple-400 underline">
-            X
-          </a>
-          <a href="#" className="hover:text-purple-400 underline">
-            URL
-          </a>
+          <a href="#" className="hover:text-purple-400 underline">FB</a>
+          <a href="#" className="hover:text-purple-400 underline">IG</a>
+          <a href="#" className="hover:text-purple-400 underline">X</a>
+          <a href="#" className="hover:text-purple-400 underline">URL</a>
         </div>
+
         {/* 6‑Image Grid */}
         <div className="grid grid-cols-2 gap-2 mb-6">
           {venue.photos.map((_, i) => (
