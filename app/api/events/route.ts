@@ -1,30 +1,42 @@
 import { NextResponse } from "next/server";
-import clientPromise from "@/lib/mongodb";
+import { connectDB } from "@/lib/mongodb";
+import Event from "@/models/Event";
 
 export async function GET() {
-  const client = await clientPromise;
-  const events = await client.db("nightlife").collection("events").find().toArray();
-  return NextResponse.json(events);
+  try {
+    await connectDB();
+
+    const events = await Event.find({});
+    return NextResponse.json(events);
+  } catch (err) {
+    console.error("GET /events error:", err);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
+  }
 }
 
 export async function POST(req: Request) {
-  const body = await req.json();
-  const client = await clientPromise;
+  try {
+    await connectDB();
 
-  const event = {
-    venueId: body.venueId,
-    eventName: body.eventName,
-    description: body.description,
-    startTime: new Date(body.startTime),
-    endTime: new Date(body.endTime),
-    prizeDaily: body.prizeDaily,
-    prizeWeekly: body.prizeWeekly,
-    prizeMonthly: body.prizeMonthly,
-    bonusEntryWindows: body.bonusEntryWindows || [],
-    createdAt: new Date(),
-    active: true
-  };
+    const body = await req.json();
 
-  const result = await client.db("nightlife").collection("events").insertOne(event);
-  return NextResponse.json({ insertedId: result.insertedId });
+    const event = await Event.create({
+      venueId: body.venueId,
+      eventName: body.eventName,
+      description: body.description,
+      startTime: new Date(body.startTime),
+      endTime: new Date(body.endTime),
+      prizeDaily: body.prizeDaily,
+      prizeWeekly: body.prizeWeekly,
+      prizeMonthly: body.prizeMonthly,
+      bonusEntryWindows: body.bonusEntryWindows || [],
+      createdAt: new Date(),
+      active: true,
+    });
+
+    return NextResponse.json({ insertedId: event._id });
+  } catch (err) {
+    console.error("POST /events error:", err);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
+  }
 }
