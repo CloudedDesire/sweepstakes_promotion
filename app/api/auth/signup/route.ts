@@ -7,22 +7,11 @@ import crypto from "crypto";
 export async function POST(req: Request) {
   try {
     await connectDB();
-
     const { name, email, password } = await req.json();
-
-    if (!name || !email || !password) {
-      return NextResponse.json(
-        { error: "Missing required fields" },
-        { status: 400 }
-      );
-    }
 
     const existing = await User.findOne({ email });
     if (existing) {
-      return NextResponse.json(
-        { error: "Email already registered" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Email already exists" }, { status: 400 });
     }
 
     const passwordHash = await bcrypt.hash(password, 10);
@@ -36,17 +25,14 @@ export async function POST(req: Request) {
       emailVerified: false,
     });
 
-    const verifyUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/verify?token=${verificationToken}`;
+    // Send verification email
+    const verifyUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/verify?token=${verificationToken}`;
 
-    // Temporary: log the verification link until email service is added
-    console.log("📧 Verification link:", verifyUrl);
+    console.log("Verification URL:", verifyUrl);
 
     return NextResponse.json({ success: true });
   } catch (err) {
-    console.error("Signup error:", err);
-    return NextResponse.json(
-      { error: "Server error during signup" },
-      { status: 500 }
-    );
+    console.error(err);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }

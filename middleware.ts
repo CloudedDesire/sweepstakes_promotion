@@ -1,19 +1,20 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import jwt from "jsonwebtoken";
 
 export function middleware(req: NextRequest) {
-  const isAdminRoute = req.nextUrl.pathname.startsWith("/admin");
-  const isLoginPage = req.nextUrl.pathname.startsWith("/admin/login");
+  const token = req.cookies.get("auth")?.value;
 
-  const auth = req.cookies.get("admin_auth")?.value;
+  if (!token) return NextResponse.redirect("/login");
 
-  if (isAdminRoute && !isLoginPage && auth !== "true") {
-    return NextResponse.redirect(new URL("/admin/login", req.url));
+  try {
+    jwt.verify(token, process.env.JWT_SECRET!);
+    return NextResponse.next();
+  } catch {
+    return NextResponse.redirect("/login");
   }
-
-  return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/admin/:path*"]
+  matcher: ["/profile/:path*", "/edit-profile/:path*"],
 };
